@@ -129,7 +129,6 @@ $PR_CYAN$PR_SHIFT_IN$PR_LLCORNER$PR_HBAR$PR_SHIFT_OUT\
   RPROMPT=' $return_code$PR_BLUE\
 $PR_BLUE\
 `git_prompt_info`\
-`git_prompt_status`\
 `git_prompt_short_sha`\
 |$PR_SHIFT_IN$PR_CYAN$PR_HBAR$PR_LRCORNER$PR_SHIFT_OUT\
 $PR_NO_COLOUR'
