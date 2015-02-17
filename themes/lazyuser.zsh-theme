@@ -79,11 +79,11 @@ setprompt () {
   PR_SET_CHARSET="%{$terminfo[enacs]%}"
   PR_SHIFT_IN="%{$terminfo[smacs]%}"
   PR_SHIFT_OUT="%{$terminfo[rmacs]%}"
-  PR_HBAR=${altchar[q]:--}
-  PR_ULCORNER=${altchar[l]:--}
-  PR_LLCORNER=${altchar[m]:--}
-  PR_LRCORNER=${altchar[j]:--}
-  PR_URCORNER=${altchar[k]:--}
+  PR_HBAR=${altchar[─]:--}
+  PR_ULCORNER=${altchar[┐]:--}
+  PR_LLCORNER=${altchar[└]:--}
+  PR_LRCORNER=${altchar[┘]:--}
+  PR_URCORNER=${altchar[┐]:--}
 
 
   ###
