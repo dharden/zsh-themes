@@ -10,14 +10,14 @@ PR_FILLBAR=""
 PR_PWDLEN=""
 
 local promptsize=${#${(%):------()--}}
-local rubyprompt=`rvm_prompt_info`
-local rubypromptsize=${#${rubyprompt}}
+local host=`hostname`
+local hostpromptsize=${#host}
 local pwdsize=${#${(%):-%~}}
 
-if [[ "$promptsize + $rubypromptsize + $pwdsize" -gt $TERMWIDTH ]]; then
+if [[ "$promptsize + $hostpromptsize + $pwdsize" -gt $TERMWIDTH ]]; then
   ((PR_PWDLEN=$TERMWIDTH - $promptsize))
 else
-  PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $rubypromptsize + $pwdsize)))..${PR_HBAR}.)}"
+  PR_FILLBAR="\${(l.(($TERMWIDTH - 2 - ($promptsize + $hostpromptsize + $pwdsize)))..${PR_HBAR}.)}"
 fi
 
 }
@@ -64,12 +64,12 @@ setprompt () {
   ZSH_THEME_GIT_PROMPT_SHA_BEFORE="[%{$reset_color%}$PR_CYAN"
   ZSH_THEME_GIT_PROMPT_SHA_AFTER="$PR_BLUE]"
 
-  ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
-  ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
-  ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-  ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
-  ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
-  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
+  ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚ "
+  ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹ "
+  ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖ "
+  ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜ "
+  ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═ "
+  ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭ "
 
   ###
   # See if we can use extended characters to look nicer.
@@ -115,9 +115,9 @@ setprompt () {
   # Finally, the prompt.
 
   PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
-$PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT$PR_GREY(\
+$PR_CYAN$PR_SHIFT_IN$PR_ULCORNER$PR_HBAR$PR_SHIFT_OUT$PR_LIGHT_BLUE(\
 %{$reset_color%}$PR_LIGHT_YELLOW%$PR_PWDLEN<...<%~%<<\
-$PR_GREY)`rvm_prompt_info`$PR_CYAN\
+$PR_LIGHT_BLUE)[%M]$PR_CYAN\
 $PR_SHIFT_IN$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_SHIFT_OUT\
 $PR_CYAN$PR_SHIFT_IN$PR_HBAR$PR_URCORNER$PR_SHIFT_OUT\
 
